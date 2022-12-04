@@ -27,17 +27,6 @@ app.get("/userList", async (req, res) => {
   res.render("userList", { MEMBERS });
 });
 
-const userRouter = require("./routes/user");
-app.use("/user", userRouter);
-
-app.use((err, req, res, next) => {
-  // 서버사이드에서는 어떤 에러인지 알아야하므로 console.log
-  console.log(err.stack);
-  // || 500 중요!
-  res.status(err.statusCode || 500);
-  res.send(err.message);
-});
-
 // 3. 서버 켜는 코드
 app.listen(PORT, () => {
   console.log(`서버는 ${PORT}번에서 실행 중입니다.`);
